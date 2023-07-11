@@ -1,6 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ edit
+ 
  */
 package ec.edu.espol.proyectopoo;
 
@@ -22,6 +24,7 @@ public class Comprador extends Cliente{
     public ArrayList<Vehiculo> busquedaVehiculo(String tipo, double recorrido, int anio, double precio){
         
         ArrayList<Vehiculo> vehiculosFiltro = new ArrayList<>();
+        
            
     }
 }
