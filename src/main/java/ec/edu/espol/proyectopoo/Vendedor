@@ -1,0 +1,19 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package ecu.edu.espol.proyectopoo;
+
+/**
+ *
+ * @author aquin
+ */
+public class Vendedor extends Cliente{
+
+    public Vendedor(String nombre, String apellido, String organizacion, String correo, String clave) {
+        super(nombre, apellido, organizacion, correo, clave);
+    }
+    
+    
+    
+}
