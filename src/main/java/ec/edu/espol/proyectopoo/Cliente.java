@@ -22,5 +22,22 @@ public class Cliente {
         this.correo = correo;
         this.clave = clave;
     }
+
+    public static Cliente nextCliente(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("ingrese nombre: ");
+        String nombre = sc.nextLine();
+        System.out.println("ingrese apellido: ");
+        String apellido = sc.nextLine();
+        System.out.println("ingrese organizacion: ");
+        String organizacion = sc.nextLine();
+        System.out.println("ingrese correo: ");
+        String correo = sc.nextLine();
+        System.out.println("ingrese clave: ");
+        String clave = sc.nextLine();
+        
+        return new Cliente(nombre,apellido,organizacion,correo,clave);
+        
+    }
     
 }
