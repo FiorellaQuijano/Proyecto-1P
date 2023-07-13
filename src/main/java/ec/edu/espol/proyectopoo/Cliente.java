@@ -31,12 +31,26 @@ public class Cliente {
         String apellido = sc.nextLine();
         System.out.println("ingrese organizacion: ");
         String organizacion = sc.nextLine();
-        System.out.println("ingrese correo: ");
-        String correo = sc.nextLine();
+       String cr="";
+        String correo1;
+        
+        do{
+            System.out.println("ingrese correo: ");
+            correo1 = sc.nextLine();
+            
+            for(Cliente c:clientes){
+                if(correo1.equals(c.correo)){
+                    System.out.println("Ya existe el correo");
+                    cr=c.correo;
+                }
+                
+            }           
+        }while(correo1.equals(cr));
+         
         System.out.println("ingrese clave: ");
         String clave = sc.nextLine();
         
-        return new Cliente(nombre,apellido,organizacion,correo,clave);
+        return new Cliente(nombre,apellido,organizacion,correo1,clave);
         
     }
     
