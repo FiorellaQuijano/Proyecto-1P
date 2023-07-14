@@ -3,7 +3,11 @@
  */
 
 package ec.edu.espol.proyectopoo;
-
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
