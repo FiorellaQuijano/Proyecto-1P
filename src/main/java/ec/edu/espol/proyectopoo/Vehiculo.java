@@ -103,4 +103,79 @@ public class Vehiculo {
         this.precio = precio;
     }
 
+      public static Vehiculo nextVehiculo(){
+               
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("ingrese tipo de vechiculo (CARRO/MOTO) : ");
+        String tipoVehiculo = sc.nextLine();
+        
+        if(tipoVehiculo.equals(TipoVehiculo.CARRO)){
+            System.out.println("ingrese Placa : ");
+            String placa = sc.nextLine();
+            System.out.println("ingrese marca: ");
+            String marca = sc.nextLine();
+            System.out.println("ingrese modelo: ");
+            String modelo = sc.nextLine();
+            System.out.println("ingrese tipo de motor: ");
+            String tipoMotor = sc.nextLine();
+            System.out.println("ingrese anio: ");
+            int anio = sc.nextInt();
+            sc.nextLine();
+            System.out.println("ingrese recorrido: ");
+            double recorrido= sc.nextDouble();
+            System.out.println("ingrese color: ");
+            String color= sc.nextLine();
+            System.out.println("ingrese Tipo combustible: ");
+            String tipoCombustible= sc.nextLine();
+            System.out.println("ingrese Tipo vidrios: ");
+            String vidrio= sc.nextLine();
+            System.out.println("ingrese Transimicion: ");
+            String transmicion= sc.nextLine();
+            System.out.println("ingrese Traccion: ");
+            String traccion= sc.nextLine();
+            System.out.println("ingrese precio: ");
+            double precio= sc.nextDouble();
+            Vehiculo v1 = new Auto(placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,vidrio,transmicion,traccion,precio);
+            return v1;
+        }
+        
+        else if(tipoVehiculo.equals(TipoVehiculo.MOTO)){
+            
+            System.out.println("ingrese Placa : ");
+            String placa = sc.nextLine();
+            System.out.println("ingrese marca: ");
+            String marca = sc.nextLine();
+            System.out.println("ingrese modelo: ");
+            String modelo = sc.nextLine();
+            System.out.println("ingrese tipo de motor: ");
+            String tipoMotor = sc.nextLine();
+            System.out.println("ingrese anio: ");
+            int anio = sc.nextInt();
+            sc.nextLine();
+            System.out.println("ingrese recorrido: ");
+            double recorrido= sc.nextDouble();
+            sc.nextLine();
+            System.out.println("ingrese color: ");
+            String color= sc.nextLine();
+            System.out.println("ingrese Tipo combustible: ");
+            String tipoCombustible= sc.nextLine();            
+            System.out.println("ingrese precio: ");
+            double precio= sc.nextDouble();
+            Vehiculo v1 = new Moto(placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,precio);
+            return v1;
+        }
+        else {
+            System.out.println("no existe ese tipo de vehivulo en la empresa");
+            return null;
+        }
+                    
+    }
+    
+    @Override
+    public String toString(){
+        return this.marca+" "+this.modelo+" "+this.tipoMotor+" Precio; "+this.precio;
+    }
+    
+
 }
