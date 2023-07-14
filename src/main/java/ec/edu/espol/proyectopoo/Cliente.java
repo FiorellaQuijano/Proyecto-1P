@@ -38,7 +38,6 @@ public class Cliente {
         String apellido = sc.nextLine();
         System.out.println("ingrese organizacion: ");
         String organizacion = sc.nextLine();
-       String cr="";
         String correo1;
         
         do{
@@ -61,7 +60,9 @@ public class Cliente {
          
         System.out.println("Ingrese clave: ");
         String clave = sc.nextLine();
-        return new Cliente(nombre,apellido,organizacion,correo1,clave);
+        Cliente cliente= new Cliente(nombre,apellido,organizacion,correo1,clave);
+        clientes.add(cliente);
+        return cliente;
     }
     public static byte[] getSHA(String input)throws NoSuchAlgorithmException{
         MessageDigest md=MessageDigest.getInstance("SHA-256");
