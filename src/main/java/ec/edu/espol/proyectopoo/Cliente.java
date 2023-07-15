@@ -29,6 +29,14 @@ public class Cliente {
         this.correo = correo;
         this.clave = clave;
     }
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+    
 
     public static Cliente nextCliente(){
         Scanner sc = new Scanner(System.in);
