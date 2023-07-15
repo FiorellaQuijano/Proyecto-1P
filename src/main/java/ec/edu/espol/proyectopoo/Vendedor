@@ -14,6 +14,29 @@ public class Vendedor extends Cliente{
         super(nombre, apellido, organizacion, correo, clave);
     }
     
-    
+    public static void aceptarOferta()throws NoSuchAlgorithmException{
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Ingresar correo: ");
+        String correo=sc.nextLine();
+        System.out.println("Ingrese clave");
+        String clave = sc.nextLine();
+        
+        boolean entrada=false;
+        for(Cliente c:clientes){
+            if(correo.equals(c.getCorreo())){                
+                byte[]hashedClave=getSHA(clave);
+                String hashedClaveString = toHexString(hashedClave);
+                if(hashedClaveString.equals(c.getClave())){
+                    System.out.println("Inicio de sesión");
+                    entrada = true;
+                    break;
+                }else{
+                    System.out.println("Clave incorrecta");
+                    break;
+                }
+            }
+        }
+   
+    }
     
 }
