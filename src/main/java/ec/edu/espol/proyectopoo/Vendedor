@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ecu.edu.espol.proyectopoo;
-
+import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
 /**
  *
  * @author aquin
