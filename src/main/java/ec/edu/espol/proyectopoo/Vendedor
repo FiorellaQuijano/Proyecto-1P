@@ -39,5 +39,41 @@ public class Vendedor extends Cliente{
         }
    
     }
+     public static void revisarOfertas(String placa, ArrayList<HashMap<String, Object>> ofertasPlaca) {
+        if(!ofertasPlaca.isEmpty()){
+            int index = 0;
+            while(index>= 0 && index<ofertasPlaca.size()) {
+                HashMap<String, Object> oferta = ofertasPlaca.get(index);
+                String correo = (String) oferta.get("correo");
+                double precioOfertado = (double) oferta.get("precioOfertado");
+                System.out.println("Oferta "+(index+1));
+                System.out.println("Correo: "+correo);
+                System.out.println("Precio Ofertado: "+precioOfertado);
+                System.out.println("1.Siguiente Oferta");
+                System.out.println("2.Anterior Oferta");
+                System.out.println("3.Aceptar Oferta");
+
+                Scanner sc=new Scanner(System.in);
+                int opcion=sc.nextInt();
+                
+
+                switch(opcion){
+                    case 1:
+                        index++;
+                        break;
+                    case 2:
+                        index--;
+                        break;
+                    case 3:
+                        System.out.println("Oferta aceptada");
+                        return;
+                    
+                }
+            }
+        } else {
+            System.out.println("No hay ofertas");
+
+        }
+    }
     
 }
