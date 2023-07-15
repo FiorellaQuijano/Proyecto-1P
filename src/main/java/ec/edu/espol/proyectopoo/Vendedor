@@ -23,7 +23,7 @@ public class Vendedor extends Cliente{
         String clave = sc.nextLine();
         
         boolean entrada=false;
-        for(Cliente c:clientes){
+        for(Cliente c:getClientes()){
             if(correo.equals(c.getCorreo())){                
                 byte[]hashedClave=getSHA(clave);
                 String hashedClaveString = toHexString(hashedClave);
