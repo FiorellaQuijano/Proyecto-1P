@@ -37,7 +37,11 @@ public class Cliente {
         return clave;
     }
     
-
+    public static ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+    
+    
     public static Cliente nextCliente(){
         Scanner sc = new Scanner(System.in);
         System.out.println("ingrese nombre: ");
