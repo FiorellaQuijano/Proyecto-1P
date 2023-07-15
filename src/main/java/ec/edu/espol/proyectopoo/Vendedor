@@ -4,7 +4,11 @@
  */
 package ecu.edu.espol.proyectopoo;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+
+
 /**
  *
  * @author aquin
