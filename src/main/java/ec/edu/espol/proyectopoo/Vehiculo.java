@@ -176,6 +176,112 @@ public class Vehiculo {
     public String toString(){
         return this.marca+" "+this.modelo+" "+this.tipoMotor+" Precio; "+this.precio;
     }
+
+    public static Vehiculo nextVehiculo(){
+               
+        Scanner sc = new Scanner(System.in);
+        boolean bandera;
+        
+        System.out.print("Ingrese tipo de vechiculo (CARRO/MOTO/CAMIONETA) : ");
+        String tipoVehiculo = sc.nextLine();
+        do{
+        if(tipoVehiculo.equals("CARRO")){
+            System.out.print("Ingrese Placa: ");
+            String placa = sc.nextLine();
+            System.out.print("Ingrese marca: ");
+            String marca = sc.nextLine();
+            System.out.print("Ingrese modelo: ");
+            String modelo = sc.nextLine();
+            System.out.print("Ingrese tipo de motor: ");
+            String tipoMotor = sc.nextLine();
+            System.out.print("Ingrese año: ");
+            int anio = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Ingrese recorrido: ");
+            double recorrido= sc.nextDouble();
+            System.out.print("Ingrese color: ");
+            String color= sc.nextLine();
+            System.out.print("Ingrese Tipo combustible: ");
+            String tipoCombustible= sc.nextLine();
+            System.out.print("Ingrese Tipo vidrios: ");
+            String vidrio= sc.nextLine();
+            System.out.print("Ingrese Transimicion: ");
+            String transmicion= sc.nextLine();
+            System.out.print("Ingrese precio: ");
+            double precio= sc.nextDouble();
+            Auto v1 = new Auto(placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,vidrio,transmicion,precio);
+            bandera=false;
+            Auto.agregarVehiculo(v1);
+            return v1;
+        }
+        
+        else if(tipoVehiculo.equals("MOTO")){
+            
+            System.out.print("Ingrese Placa: ");
+            String placa = sc.nextLine();
+            System.out.print("Ingrese marca: ");
+            String marca = sc.nextLine();
+            System.out.print("Ingrese modelo: ");
+            String modelo = sc.nextLine();
+            System.out.print("Ingrese tipo de motor: ");
+            String tipoMotor = sc.nextLine();
+            System.out.print("Ingrese año: ");
+            int anio = sc.nextInt();
+            System.out.print("Ingrese recorrido: ");
+            double recorrido= sc.nextDouble();
+            sc.nextLine();
+            System.out.print("Ingrese color: ");
+            String color= sc.nextLine();
+            System.out.print("Ingrese Tipo combustible: ");
+            String tipoCombustible= sc.nextLine();
+            System.out.print("Ingrese precio: ");
+            double precio= sc.nextDouble();
+            Moto v1 = new Moto(placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,precio);
+            bandera=false;
+            Moto.agregarVehiculo(v1);
+            return v1;
+            
+        }else if(tipoVehiculo.equals("CAMIONETA")){
+            System.out.print("Ingrese Placa: ");
+            String placa = sc.nextLine();
+            System.out.print("Ingrese marca: ");
+            String marca = sc.nextLine();
+            System.out.print("Ingrese modelo: ");
+            String modelo = sc.nextLine();
+            System.out.print("Ingrese tipo de motor: ");
+            String tipoMotor = sc.nextLine();
+            System.out.print("Ingrese año: ");
+            int anio = sc.nextInt();
+            System.out.print("Ingrese recorrido: ");
+            double recorrido= sc.nextDouble();
+            sc.nextLine();
+            System.out.print("Ingrese color: ");
+            String color= sc.nextLine();
+            System.out.print("Ingrese Tipo combustible: ");
+            String tipoCombustible= sc.nextLine();
+            System.out.print("Ingrese Tipo vidrios: ");
+            String vidrio= sc.nextLine();
+            System.out.print("Ingrese Transimicion: ");
+            String transmicion= sc.nextLine();
+            System.out.print("Ingrese Traccion: ");
+            double traccion= sc.nextDouble();
+            System.out.print("Ingrese precio: ");
+            double precio= sc.nextDouble();
+            
+            Camioneta v1 = new Camioneta(traccion,vidrio,transmicion,placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,precio);
+            bandera=false;
+            Camioneta.agregarVehiculo(v1);
+            return v1;
+        }
+    
+        else {
+            System.out.println("No existe ese tipo de vehivulo en la empresa");
+            bandera= true;
+            return null;
+        }
+        }while(true);
+                    
+    }
     
 
 }
