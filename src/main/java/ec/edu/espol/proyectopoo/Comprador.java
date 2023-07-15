@@ -122,6 +122,63 @@ public class Comprador extends Cliente{
         
         
     }
+
+ 
+    /*lo resumi en esto */
+    
+    public ArrayList<Vehiculo> busquedaVehiculo(ArrayList<Vehiculo> vehiculos,Scanner sc){
+        
+        ArrayList<Vehiculo> vehiculosFiltro = new ArrayList<>();
+        
+        System.out.println("tipo vehiculo (MOTO/AUTO/CAMIONETA)");
+        String tipoV = sc.nextLine();
+        System.out.println("tipo año inicio");
+        int anioInicio = sc.nextInt();
+        sc.nextLine();
+        System.out.println("tipo año fin");
+        int anioFin = sc.nextInt();
+        sc.hasNextLine();
+        System.out.println("tipo recorrido incio");
+        double recorridoInicio = sc.nextDouble();
+        System.out.println("tipo recorido fin");
+        double recorridoFin = sc.nextDouble();
+        System.out.println("tipo precio inicio");
+        double precioInicio = sc.nextDouble();
+        System.out.println("tipo precio fin");
+        double precioFin = sc.nextDouble();
+        
+               
+        
+        for(Vehiculo v: vehiculos){
+            int a= v.getAnio();
+            double r = v.getRecorrido();
+            double p = v.getPrecio();
+            
+            if(tipoV.equals("MOTO")){
+                if(v instanceof Moto){
+                    if(((a>anioInicio && a<anioFin)|| anioInicio == 0)&&((r>recorridoInicio && r<recorridoFin )|| recorridoInicio==0)&&((p>precioInicio && p<precioFin)|| precioInicio==0))
+                        vehiculosFiltro.add(v);                    
+                }
+            }
+            else if (tipoV.equals("AUTO")){
+                if(v instanceof Auto){
+                    if(((a>anioInicio && a<anioFin)|| anioInicio == 0)&&((r>recorridoInicio && r<recorridoFin )|| recorridoInicio==0)&&((p>precioInicio && p<precioFin)|| precioInicio==0))
+                        vehiculosFiltro.add(v);
+                }
+            }
+            else if (tipoV.equals("CAMIONETA")){
+                if(v instanceof Auto){
+                    if(((a>anioInicio && a<anioFin)|| anioInicio == 0)&&((r>recorridoInicio && r<recorridoFin )|| recorridoInicio==0)&&((p>precioInicio && p<precioFin)|| precioInicio==0))
+                        vehiculosFiltro.add(v);
+                }
+            }
+            else
+                if (((a>anioInicio && a<anioFin)|| anioInicio == 0)&&((r>recorridoInicio && r<recorridoFin )|| recorridoInicio==0)&&((p>precioInicio && p<precioFin)|| precioInicio==0))
+                    vehiculosFiltro.add(v);
+        }
+        return vehiculosFiltro;    
+    }
+ 
     
 
  
