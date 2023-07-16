@@ -43,6 +43,40 @@ public class Vendedor extends Cliente{
         }
    
     }
+    public static void eliminarVehiculo(String placa){
+        System.out.println("El vehículo con placa "+placa+ "ha sido eliminada");
+    }
+    public static void enviarConGmail(String destinatario,String asunto,String cuerpo){
+        String remitente="remitente@gmail.com";
+        String claveEmail="contraseña";
+        
+        Properties props=System.getProperties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.user", remitente);
+        props.put("mail.smtp.clave", claveEmail);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true"); 
+        props.put("mail.smtp.port", "587");
+        
+        
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+        
+        
+        try {
+        message.setFrom(new InternetAddress(remitente));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));   
+        message.setSubject(asunto);
+        message.setText(cuerpo);
+        Transport transport = session.getTransport("smtp");
+        transport.connect("smtp.gmail.com", remitente, claveEmail);
+        transport.sendMessage(message, message.getAllRecipients());
+        transport.close();
+    }
+    catch (MessagingException me) {
+        me.printStackTrace();   
+    }
+    }    
      public static void revisarOfertas(String placa, ArrayList<HashMap<String, Object>> ofertasPlaca) {
         if(!ofertasPlaca.isEmpty()){
             int index = 0;
