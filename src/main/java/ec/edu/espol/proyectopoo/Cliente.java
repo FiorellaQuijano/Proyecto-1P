@@ -41,7 +41,36 @@ public class Cliente {
         return clientes;
     }
     
+    @Override
+    public String toString(){
+        return this.nombres+ ","+ this.apellidos+ ","+ this.organizacion+ ","+ this.correo+ ","+this.clave;
+        
+    }
     
+    
+    public static boolean validarCorreoUnico(String correo) {
+        String nombreArchivo = "Archivo.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                
+                if (!linea.equals("TipoUsuario,nombres,apellidos,organizacion,correo,clave o TipoVehiculo,placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,precio,vidrio,transmicion,traccion")) {
+                    String[] datos = linea.split(",");
+                    String correo_sistema= datos[4];
+                    if(correo.equals(correo_sistema)){
+                        System.out.println("Este correo está en el sistema");
+                        return true;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+        return false;
+    
+    }
+    /*
     public static Cliente nextCliente(){
         Scanner sc = new Scanner(System.in);
         System.out.println("ingrese nombre: ");
@@ -91,6 +120,7 @@ public class Cliente {
  
         return hexString.toString();
     }
+    */
 
             
         
