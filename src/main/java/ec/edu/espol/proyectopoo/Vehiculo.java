@@ -9,16 +9,17 @@ package ec.edu.espol.proyectopoo;
  * @author Fiorella Quijano
  */
 public class Vehiculo {
-    private String placa;
-    private String marca;
-    private String modelo;
-    private String tipoMotor;
-    private int anio;
-    private double recorrido;
-    private String color;
-    private String tipoCombustible;
-    private double precio;
-
+  
+    protected String placa;
+    protected String marca;
+    protected String modelo;
+    protected String tipoMotor;
+    protected int anio;
+    protected double recorrido;
+    protected String color;
+    protected String tipoCombustible;
+    protected double precio;
+    
     public Vehiculo(String placa, String marca, String modelo, String tipoMotor, int anio, double recorrido, String color, String tipoCombustible, double precio) {
         this.placa = placa;
         this.marca = marca;
@@ -102,13 +103,7 @@ public class Vehiculo {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
-        
-    @Override
-    public String toString(){
-        return this.marca+" "+this.modelo+" "+this.tipoMotor+" Precio; "+this.precio;
-    }
-
+    
     public static Vehiculo nextVehiculo(){
                
         Scanner sc = new Scanner(System.in);
@@ -215,5 +210,10 @@ public class Vehiculo {
                     
     }
     
-
+    @Override
+    public String toString(){
+        return this.placa+","+this.marca+","+this.modelo+","+this.tipoMotor+","+ this.anio+ ","+ this.recorrido+","+this.color+","+this.tipoCombustible+","+this.precio;
+    }
+    
+    
 }
