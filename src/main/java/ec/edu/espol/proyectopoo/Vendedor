@@ -179,5 +179,107 @@ public class Vendedor extends Cliente{
           
     
     }
+
+    public List<String>  buscarOfertas(String placa_buscar){
+        List<String> lofertas=Comprador.buscarTipo("OFERTA");
+        String nombreArchivo = "Archivo.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                
+                if (!linea.equals("TipoUsuario,nombres,apellidos,organizacion,correo,clave")) {
+                    for(String s: lofertas){
+                        String[] datos_oferta= s.split(";");
+                        String placa= datos_oferta[1];
+                        if(placa.equals(placa_buscar)){
+                            lofertas.add(s);
+                        }
+                        
+                    } 
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+        return lofertas;
+    }
+
+    public static void mostrarOferta(List<String> lofertas){
+        boolean bandera= true;
+        Scanner sc= new Scanner(System.in);
+        if(lofertas != null || !lofertas.isEmpty()){
+            sacarOferta(lofertas);
+            while(bandera){  
+            for(String s: lofertas){
+                if (s.equals(lofertas.get(0))){
+                    String[] datos= s.split(";");
+                    String precio_ofertado= datos[5];
+                    String correo= datos[4];
+                    System.out.println("\nCorreo: "+ correo);
+                    System.out.println("Precio ofertado: "+ precio_ofertado);
+                    System.out.println("\n1.- Siguiente Oferta");
+                    //System.out.println("2.- Anterior Oferta");
+                    System.out.println("3.- Aceptar Oferta");
+                    System.out.print("Ingrese una opción: ");
+                    int opcion= sc.nextInt();
+                    
+                }else if(!s.equals(lofertas.get(0)) ){
+                    String[] datos= s.split(";");
+                    String precio_ofertado= datos[5];
+                    String correo= datos[4];
+                    System.out.println("\nCorreo: "+ correo);
+                    System.out.println("Precio ofertado: "+ precio_ofertado);
+                    System.out.println("\n1.- Siguiente Oferta");
+                    System.out.println("2.- Anterior Oferta");
+                    System.out.println("3.- Aceptar Oferta");
+                    System.out.print("Ingrese una opción: ");
+                    int opcion= sc.nextInt();
+                    
+                }else if(s.equals(lofertas.get(lofertas.size()-1))){
+                    String[] datos= s.split(";");
+                    String precio_ofertado= datos[5];
+                    String correo= datos[4];
+                    System.out.println("\nCorreo: "+ correo);
+                    System.out.println("Precio ofertado: "+ precio_ofertado);
+                    //System.out.println("\n1.- Siguiente Oferta");
+                    System.out.println("2.- Anterior Oferta");
+                    System.out.println("3.- Aceptar Oferta");
+                    System.out.print("Ingrese una opción: ");
+                    int opcion= sc.nextInt();
+                }
+                
+            }
+            bandera= false;
+             
+        }
+        }else System.out.println("No hay ofertas");
+                
+    }
+    
+    public static List<String> crearOfertas(String correo, List<String> lvehiculos, double precio_ofertado){
+        List<String> lofertas= new ArrayList<>();
+        for(String s: lvehiculos){
+            String[] datos_vehiculos= s.split(";");
+            String placa= datos_vehiculos[1];
+            String marca= datos_vehiculos[2];
+            String modelo= datos_vehiculos[3];
+            String precio= datos_vehiculos[8];
+            String oferta= "OFERTA,"+placa+","+marca+","+modelo+","+correo+","+precio_ofertado+ ","+precio;
+            lofertas.add(oferta);
+        }
+        return lofertas;
+    }
+    public static void sacarOferta(List<String> lofertas){
+        String oferta0= lofertas.get(0);
+        String[] datos= oferta0.split(";");
+        String precio= datos[6];
+        String marca= datos[2];
+        String modelo= datos[3];
+        String datos_vehiculo= marca+" "+modelo+" Precio:"+precio;
+        System.out.println(datos_vehiculo);
+        System.out.println("Se han realizado "+ lofertas.size()+" ofertas");  
+    }
+    
     
 }
