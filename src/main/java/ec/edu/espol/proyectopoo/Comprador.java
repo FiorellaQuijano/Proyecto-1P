@@ -180,7 +180,158 @@ public class Comprador extends Cliente{
         
     }
 */
- 
+    //NUEVO
+    @Override
+    public String toString(){
+        return "COMPRADOR,"+ super.toString();
+    }
+    
+    public static Comprador nextComprador(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese nombres: ");
+        String nombre = sc.nextLine();
+        System.out.print("Ingrese apellidos: ");
+        String apellido = sc.nextLine();
+        System.out.print("Ingrese organización: ");
+        String organizacion = sc.nextLine();
+        
+        String correo;
+        boolean bandera;
+        do{
+            System.out.print("Ingrese correo: ");
+            correo = sc.nextLine();
+            bandera= Cliente.validarCorreoUnico(correo);
+        }while(bandera);
+        
+        System.out.print("Ingrese su clave: ");
+        String clave = sc.nextLine();
+        
+        return new Comprador(nombre,apellido,organizacion,correo,clave);
+        
+    }
+    
+    public static void menuComprador(int opcion){
+        Scanner sc= new Scanner(System.in);
+        int opcion_comprador;
+        do {
+        System.out.println("\n1. Registrar comprador"); 
+        System.out.println("2. Ofertar por un vehículo");
+        System.out.print("\nIngrese una opción: ");
+        try{
+        opcion_comprador= sc.nextInt();
+        switch(opcion_comprador){
+            case 1:
+                
+                Comprador c= nextComprador();
+                agregarComprador(c);
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                System.out.println("\nIngrese una opcion correcta");
+                break;
+        }
+        }catch(InputMismatchException e){
+            System.out.println("\nIngrese un número válido\n");
+            sc.nextLine();
+            opcion_comprador = 0;
+            
+        }
+        
+        }while (opcion_comprador < 1 || opcion_comprador > 2);
+    }
+    
+    public static void agregarComprador(Comprador c){
+        FileWriter fw= null;
+        BufferedWriter bfw= null;
+        try{
+           fw= new FileWriter("Archivo.csv",true);
+           bfw= new BufferedWriter(fw);
+           bfw.write(c.toString()+"\n");
+     
+        }catch(IOException e){
+            System.out.println("Error abriendo el archivo: " + e);
+        }finally {
+            try{
+                if (bfw != null) {
+                    bfw.close();
+            }
+                if (fw != null) {
+                    fw.close();
+                }
+            }catch(IOException e2){
+                System.out.println("No se pudo cerrar el archivo: " +e2);
+            }
+        }
+        System.out.println("Se ha registrado correctamente");
+    }
+
+    public static String buscarLinea(String s){
+        String nombreArchivo = "Archivo.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                
+                if (!linea.equals("TipoUsuario,nombres,apellidos,organizacion,correo,clave")) {
+                    if(linea.equals(s)){
+                        return linea;
+                    } 
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+        System.out.println("\nNo se encuentra en el sistema");
+        return null;
+    }
+    
+    public static void eliminarLinea(String s){
+        String nombreArchivo = "Archivo.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                
+                if (!linea.equals("TipoUsuario,nombres,apellidos,organizacion,correo,clave o TipoVehiculo,placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,precio,vidrio,transmicion,traccion")) {
+                    if(linea.equals(s)){
+                        System.out.println("\nSe eliminó con éxito");
+                    } 
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+        
+    }
+    
+    public static List<String> buscarTipo(String tipo_ingresado){
+        List<String> ltipos= new ArrayList<>();
+        String nombreArchivo = "Archivo.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                
+                if (!linea.equals("TipoUsuario,nombres,apellidos,organizacion,correo,clave")) {
+                    String[] datos = linea.split(",");
+                    String tipo= datos[0];
+                    if(tipo.equals(tipo_ingresado)){
+                        ltipos.add(linea);
+                        
+                    } 
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+        return ltipos;
+    }
  
     
 
