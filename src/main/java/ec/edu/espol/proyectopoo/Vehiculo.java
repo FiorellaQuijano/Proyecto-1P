@@ -126,6 +126,7 @@ public class Vehiculo {
             sc.nextLine();
             System.out.print("Ingrese recorrido: ");
             double recorrido= sc.nextDouble();
+            sc.nextLine();
             System.out.print("Ingrese color: ");
             String color= sc.nextLine();
             System.out.print("Ingrese Tipo combustible: ");
@@ -136,7 +137,7 @@ public class Vehiculo {
             String transmicion= sc.nextLine();
             System.out.print("Ingrese precio: ");
             double precio= sc.nextDouble();
-            Auto v1 = new Auto(placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,vidrio,transmicion,precio);
+            Vehiculo v1 = new Auto(placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,vidrio,transmicion,precio);
             bandera=false;
             Auto.agregarVehiculo(v1);
             return v1;
@@ -163,7 +164,7 @@ public class Vehiculo {
             String tipoCombustible= sc.nextLine();
             System.out.print("Ingrese precio: ");
             double precio= sc.nextDouble();
-            Moto v1 = new Moto(placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,precio);
+            Vehiculo v1 = new Moto(placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,precio);
             bandera=false;
             Moto.agregarVehiculo(v1);
             return v1;
@@ -195,7 +196,7 @@ public class Vehiculo {
             System.out.print("Ingrese precio: ");
             double precio= sc.nextDouble();
             
-            Camioneta v1 = new Camioneta(traccion,vidrio,transmicion,placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,precio);
+            Vehiculo v1 = new Camioneta(traccion,vidrio,transmicion,placa,marca,modelo,tipoMotor,anio,recorrido,color,tipoCombustible,precio);
             bandera=false;
             Camioneta.agregarVehiculo(v1);
             return v1;
@@ -215,5 +216,29 @@ public class Vehiculo {
         return this.placa+","+this.marca+","+this.modelo+","+this.tipoMotor+","+ this.anio+ ","+ this.recorrido+","+this.color+","+this.tipoCombustible+","+this.precio;
     }
     
-    
+    public static void agregarVehiculo(Vehiculo v){
+        FileWriter fw= null;
+        BufferedWriter bfw= null;
+        try{
+           fw= new FileWriter("Archivo.csv",true);
+           bfw= new BufferedWriter(fw);
+           bfw.write(v.toString()+"\n");
+           System.out.println("\nSe ha registrado correctamente");
+        }catch(IOException e){
+            System.out.println("\nError abriendo el archivo: " + e);
+        }finally {
+            try{
+                if (bfw != null) {
+                    bfw.close();
+            }
+                if (fw != null) {
+                    fw.close();
+                }
+                
+            }catch(IOException e2){
+                System.out.println("\nNo se pudo cerrar el archivo: " +e2);
+            }
+        }
+        
+    }
 }
