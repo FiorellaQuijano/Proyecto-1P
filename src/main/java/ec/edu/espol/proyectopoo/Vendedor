@@ -3,9 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ecu.edu.espol.proyectopoo;
+import com.sun.jdi.connect.Transport;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 import java.util.Scanner;
 
 
@@ -104,7 +112,13 @@ public class Vendedor extends Cliente{
                         break;
                     case 3:
                         System.out.println("Oferta aceptada");
+                        eliminarVehiculo(placa);
+                        enviarConGMail(correoComprador, "Oferta aceptada");
+
                         return;
+                        default:
+                        System.out.println("Opción inválida");
+                        break;
                     
                 }
             }
